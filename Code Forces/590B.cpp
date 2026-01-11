@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#define ll long long
 using namespace std;
 void solve();
 int main() {
@@ -8,30 +9,34 @@ int main() {
     freopen("../output.txt", "w", stdout);
 #endif
     int t=1;
-    cin>>t;
+    // cin>>t;
     while(t--)  solve();
     cerr << "time: " << (float)clock() / CLOCKS_PER_SEC << endl; return 0;
 }
 
 
 void solve(){
-    int n,limit;
-    cin>>n>>limit;
-    vector<int> arr(n);
-    for(int i=0;i<n;i++) cin>>arr[i];
-    for(int i=0;i<n;i++) cout<<arr[i]<<endl;
+    int n;
+    ll d;
+    cin>>n>>d;
+
+    vector<pair<ll,ll>> arr(n);
+    for(int i=0;i<n;i++){
+        cin>>arr[i].first>>arr[i].second;
+    }
+
+    sort(arr.begin(),arr.end());
 
     int l=0;
-    long long time=0;
-    int ans=0;
+    ll curr=0, ans=0;
 
-    for(int r=0;r<n;r++){
-        time+=arr[r];
-        while(time>limit){
-            time-=arr[l];
+    for(int i=0;i<n;i++){
+        curr+=arr[i].second;
+        while(arr[i].first-arr[l].first>=d){
+            curr-=arr[l].second;
             l++;
         }
-        ans=max(ans,r-l+1);
+        ans=max(ans,curr);
     }
 
     cout<<ans<<endl;

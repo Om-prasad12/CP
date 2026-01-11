@@ -8,7 +8,7 @@ int main() {
     freopen("../output.txt", "w", stdout);
 #endif
     int t=1;
-    cin>>t;
+    // cin>>t;
     while(t--)  solve();
     cerr << "time: " << (float)clock() / CLOCKS_PER_SEC << endl; return 0;
 }
@@ -19,7 +19,6 @@ void solve(){
     cin>>n>>limit;
     vector<int> arr(n);
     for(int i=0;i<n;i++) cin>>arr[i];
-    for(int i=0;i<n;i++) cout<<arr[i]<<endl;
 
     int l=0;
     long long time=0;
