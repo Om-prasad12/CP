@@ -14,23 +14,24 @@ int main() {
 }
 
 
-void solve() {
+void solve(){
     int n,u;
     cin>>n>>u;
     vector<int> arr(n);
-    for(int i=0;i<n;i++){
-        cin>>arr[i];
-    }
-    double ans=-1;
-    int l=0;
-    for(int i=2;i<n;i++){
-        while(l<i && arr[i]-arr[l]>u){
-            l++;
+    for(int i=0;i<n;i++) cin>>arr[i];
+
+    double ans = -1;
+    int r = 0;
+
+    for(int i = 0; i < n; i++){
+        while(r < n && arr[r] - arr[i] <= u){
+            r++;
         }
-        if(i-l>=2){
-            double temp=(double)(arr[i]-arr[l+1])/(arr[i]-arr[l]);
-            ans=max(ans,temp);
+        if(r - i >= 3){
+            double temp = (double)(arr[r-1] - arr[i+1]) / (arr[r-1] - arr[i]);
+            ans = max(ans, temp);
         }
     }
-    cout<<fixed<<setprecision(12)<<ans<<endl;
+
+    cout << fixed << setprecision(12) << ans << "\n";
 }
